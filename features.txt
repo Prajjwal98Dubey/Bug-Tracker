@@ -1,0 +1,20 @@
+
+Developer:
+1. After logging in, the developer should land on a dashboard where they can view and manage their tasks/bugs.
+2. Developer should be able to create a new task/bug for their team/projects with fields like Title, Description, Priority,Status Assignee, important dates, etc. Think about and include any additional fields that might be relevant for a comprehensive bug tracker application.
+3. Developer should be able to edit and delete tasks.
+4. Implement a way to filter/sort tasks based on different criteria (priority, status, etc.).
+5. Developer should be able to close a bug which will go to manager for verification
+
+Manager:
+1. Manager should be able to able to view all the open and closed bugs
+2. Developer should be able to close a bug which will go to manager for verification
+3. Manager should be able to approve the closure of the bug or re-open it. Until any action is taken , bug will be in Pending Approval state.
+4. Manager should be able to see the same for all Developers
+
+
+Common:
+1. The dashboard should display a list of tasks with relevant details.
+2. Dashboard should also have a trend line of concurrent tasks worked upon each day.
+3. Add a time tracking feature to log the time spent on each task.
+4. Display the total time spent on each task.
