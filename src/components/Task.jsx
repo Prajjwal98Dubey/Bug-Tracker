@@ -1,8 +1,10 @@
 /// create a task or bug
+
 import { useState } from "react";
 import userData from "../data/users.data.json";
 import { useDispatch } from "react-redux";
 import { addNewTask } from "../redux/slices/tasks.slice.js";
+import { nanoid } from "nanoid";
 const Task = ({ setShowTaskModal }) => {
   const [taskData, setTaskData] = useState({
     title: "",
@@ -20,8 +22,7 @@ const Task = ({ setShowTaskModal }) => {
     e.preventDefault();
 
     // write task form data validation
-    console.log(taskData);
-    dispatch(addNewTask({ ...taskData }));
+    dispatch(addNewTask({ ...taskData, id: nanoid() }));
     setShowTaskModal(false);
     setTaskData({
       title: "",
@@ -33,8 +34,8 @@ const Task = ({ setShowTaskModal }) => {
     });
   };
   return (
-    <div className="fixed w-full h-full top-0 left-0 bg-gray-500/35">
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-[600px] max-h-[500px] overflow-y-auto px-2 py-2 border border-gray-400-400 rounded-md shadow-sm shadow-gray-500">
+    <div className="fixed w-full h-full top-0 left-0 bg-gray-400/45 z-10">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[600px] max-h-[500px] overflow-y-auto px-2 py-2 border border-gray-400-400 rounded-md shadow-sm shadow-gray-500 bg-[#313131]">
         <div
           onClick={() => setShowTaskModal(false)}
           className="absolute right-2 top-2 w-fit h-fit rounded-full px-1 py-1 bg-gray-500 hover:bg-gray-400 cursor-pointer"

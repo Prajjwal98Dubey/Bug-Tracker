@@ -28,7 +28,7 @@ const Dashboard = () => {
             + Create
           </button>
         </div>
-        <div>
+        <div className="px-8 py-2">
           <DisplayTask />
         </div>
       </div>
