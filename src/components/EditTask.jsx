@@ -1,52 +1,37 @@
-/// create a task or bug
-
 import { useState } from "react";
 import userData from "../data/users.data.json";
-import { useDispatch } from "react-redux";
-import { addNewTask } from "../redux/slices/tasks.slice.js";
-import { nanoid } from "nanoid";
-const Task = ({ tasks, setTasks, setShowTaskModal }) => {
-  const [taskData, setTaskData] = useState({
-    title: "",
-    description: "",
-    priority: "",
-    assign: "none",
-    type: "none",
-    endDate: "",
-  });
-  const dispatch = useDispatch();
-  const handleTaskData = (e) => {
-    setTaskData({ ...taskData, [e.target.name]: e.target.value });
+const EditTask = ({ taskData, setShowEditModal, tasks, setTasks }) => {
+  const [editDetails, setEditDetails] = useState({ ...taskData });
+  const handleEditDetails = (e) => {
+    setEditDetails({ ...editDetails, [e.target.name]: e.target.value });
   };
-  const handleSubmitTask = (e) => {
+  const handleEditTask = (e) => {
     e.preventDefault();
+    let updateTasks = [];
+    let updatedLocalStorageTasks = [];
 
-    // write task form data validation
-    let data = { ...taskData, id: nanoid(), isOpen: true, status: "pending" };
-    dispatch(addNewTask(data));
-    if (
-      taskData.assign === JSON.parse(localStorage.getItem("tira-auth")).userId
-    ) {
-      setTasks([...tasks, { ...data }]);
-    }
-    if (localStorage.getItem("all-tasks")) {
-      let previousTasks = JSON.parse(localStorage.getItem("all-tasks"));
-      localStorage.setItem(
-        "all-tasks",
-        JSON.stringify([...previousTasks, { ...data }])
-      );
-    } else {
-      localStorage.setItem("all-tasks", JSON.stringify([{ ...data }]));
-    }
-    setShowTaskModal(false);
-    setTaskData({
-      title: "",
-      description: "",
-      priority: "",
-      assign: "none",
-      type: "none",
-      endDate: "",
+    tasks.forEach((task) => {
+      if (task.id === taskData.id) {
+        updateTasks.push({ ...editDetails });
+      } else {
+        updateTasks.push({ ...task });
+      }
     });
+    if (localStorage.getItem("all-tasks")) {
+      JSON.parse(localStorage.getItem("all-tasks")).forEach((task) => {
+        if (task.id == taskData.id) {
+          updatedLocalStorageTasks.push({ ...editDetails });
+        } else {
+          updatedLocalStorageTasks.push({ ...task });
+        }
+      });
+    }
+    setShowEditModal(false);
+    setTasks([...updateTasks]);
+    localStorage.setItem(
+      "all-tasks",
+      JSON.stringify([...updatedLocalStorageTasks])
+    );
   };
   const findAssignees = () => {
     let loggedInUser = JSON.parse(localStorage.getItem("tira-auth"));
@@ -62,7 +47,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
     <div className="fixed w-full h-full top-0 left-0 bg-gray-400/45 z-10">
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[600px] max-h-[500px] overflow-y-auto px-2 py-2 border border-gray-400-400 rounded-md shadow-sm shadow-gray-500 bg-[#313131]">
         <div
-          onClick={() => setShowTaskModal(false)}
+          onClick={() => setShowEditModal(false)}
           className="absolute right-2 top-2 w-fit h-fit rounded-full px-1 py-1 bg-gray-500 hover:bg-gray-400 cursor-pointer"
         >
           <svg
@@ -81,7 +66,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
           </svg>
         </div>
         <div>
-          <form onSubmit={handleSubmitTask}>
+          <form onSubmit={handleEditTask}>
             <div className="py-1">
               <div className="text-2xl font-bold flex justify-center items-center py-2 my-2">
                 <p className="text-center">Create a new task or bug</p>
@@ -96,8 +81,8 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                       <input
                         type="text"
                         name="title"
-                        value={taskData["title"]}
-                        onChange={handleTaskData}
+                        value={editDetails["title"]}
+                        onChange={handleEditDetails}
                         placeholder="enter title  of task"
                         className="w-[400px] h-[40px] py-2 px-1 rounded-md bg-[#313131] border border-gray-300"
                       />
@@ -114,9 +99,9 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                   </div>
                   <div>
                     <textarea
-                      value={taskData["description"]}
+                      value={editDetails["description"]}
                       name="description"
-                      onChange={handleTaskData}
+                      onChange={handleEditDetails}
                       placeholder="enter description  of task"
                       className="w-[400px] h-[100px]  p-2 resize-none rounded-md bg-[#313131] border border-gray-300"
                     ></textarea>
@@ -137,7 +122,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                           type="radio"
                           name="priority"
                           value={p}
-                          onChange={handleTaskData}
+                          onChange={handleEditDetails}
                         />
                         <div className="px-1">{p}</div>
                       </div>
@@ -154,9 +139,9 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                   </div>
                   <div className="flex justify-center items-center">
                     <select
-                      value={taskData["assign"]}
+                      value={editDetails["assign"]}
                       name="assign"
-                      onChange={handleTaskData}
+                      onChange={handleEditDetails}
                       className="bg-[#313131] border border-gray-400 px-2 py-1 rounded-md"
                     >
                       <option disabled value="none">
@@ -180,9 +165,9 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                   </div>
                   <div className="flex justify-center items-center">
                     <select
-                      value={taskData["type"]}
+                      value={editDetails["type"]}
                       name="type"
-                      onChange={handleTaskData}
+                      onChange={handleEditDetails}
                       className="bg-[#313131] border border-gray-400 px-2 py-1 rounded-md "
                     >
                       <option disabled value="none">
@@ -204,9 +189,9 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                   <input
                     type="datetime-local"
                     name="endDate"
-                    value={taskData["endDate"]}
-                    onChange={handleTaskData}
-                    className="bg-[#313131] px-1 py-2 rounded-md"
+                    value={editDetails["endDate"]}
+                    onChange={handleEditDetails}
+                    className="bg-[#313131] px-1 py-2 rounded-md border border-gray-400"
                   />
                 </div>
               </label>
@@ -216,7 +201,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                 type="submit"
                 className="font-bold text-white bg-gradient-to-r from-blue-400 to-blue-500 w-[300px] h-[45px] rounded-md"
               >
-                Done !!!
+                Edit
               </button>
             </div>
           </form>
@@ -226,4 +211,4 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
   );
 };
 
-export default Task;
+export default EditTask;

@@ -1,16 +1,21 @@
-import { useSelector } from "react-redux";
 import SingleTask from "./SingleTask";
 
-const DisplayTask = () => {
-  const taskSelector = useSelector((store) => store.tasks.taskList);
+const DisplayTask = ({ tasks, setTasks, isLoading }) => {
+  // const taskSelector = useSelector((store) => store.tasks.taskList);
+
   return (
     <div className="flex flex-wrap">
-      {taskSelector.length > 0 &&
-        taskSelector.map((task) => (
+      {!isLoading && tasks.length == 0 ? (
+        <div className="w-full h-full flex justify-center items-center text-xl font-bold">
+          No task or bug yet enjoy !!!!
+        </div>
+      ) : (
+        tasks.map((task) => (
           <div key={task.id}>
-            <SingleTask details={task} />
+            <SingleTask tasks={tasks} setTasks={setTasks} details={task} />
           </div>
-        ))}
+        ))
+      )}
     </div>
   );
 };

@@ -11,8 +11,6 @@ const taskList = createSlice({
     addNewTask(state, action) {
       state.taskList.push({
         ...action.payload,
-        status: "pending",
-        isOpen: true,
       });
     },
   },

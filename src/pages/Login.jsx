@@ -26,7 +26,12 @@ const Login = () => {
       return toast.error("wrong password", { duration: 1500 });
     localStorage.setItem(
       "tira-auth",
-      JSON.stringify({ userName, userImage: user.avatar, userRole: user.role })
+      JSON.stringify({
+        userName,
+        userImage: user.avatar,
+        userRole: user.role,
+        userId: user.userId,
+      })
     );
     navigate("/dashboard");
   };
@@ -56,7 +61,7 @@ const Login = () => {
             </label>
           </div>
           <div className="m-2">
-            <label htmlFor="username">
+            <label htmlFor="password">
               <div className="flex justify-center items-center">
                 <div className=" w-[150px] h-[45px] px-1 flex justify-center items-center">
                   password
