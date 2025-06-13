@@ -10,7 +10,7 @@ const Navbar = () => {
     navigate("/");
   };
   return (
-    <div className="flex justify-between items-center py-2 lg:text-3xl text-xl font-bold w-full h-full lg:px-10 px-2">
+    <div className="flex justify-between items-center py-2 lg:text-3xl text-xl font-bold w-full h-full lg:px-10 px-4">
       <div className="flex justify-center items-center">Tira Tracker</div>
       <div className=" flex justify-center items-center">
         <div className=" w-fit h-fit cursor-pointer rounded-full flex justify-center items-center">

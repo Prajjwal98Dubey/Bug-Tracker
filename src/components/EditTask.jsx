@@ -1,5 +1,7 @@
 import { useState } from "react";
 import userData from "../data/users.data.json";
+import toast from "react-hot-toast";
+import { isFutureTime } from "../helpers/formatDate";
 const EditTask = ({ taskData, setShowEditModal, tasks, setTasks }) => {
   const [editDetails, setEditDetails] = useState({ ...taskData });
   const handleEditDetails = (e) => {
@@ -7,6 +9,16 @@ const EditTask = ({ taskData, setShowEditModal, tasks, setTasks }) => {
   };
   const handleEditTask = (e) => {
     e.preventDefault();
+    for (let key of Object.keys(taskData)) {
+      if (!editDetails[key]) {
+        return toast.error("enter all mandatory fields");
+      }
+    }
+    if (editDetails["assign"] == "none" || editDetails["type"] == "none")
+      return toast.error("enter all mandatory fields");
+
+    if (!isFutureTime(editDetails["endDate"]))
+      return toast.error("end date should be greater than today's date");
     let updateTasks = [];
     let updatedLocalStorageTasks = [];
 

@@ -13,3 +13,10 @@ export const convertDate = (dateString) => {
 
   return `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
 };
+
+export function isFutureTime(inputTime) {
+  const givenTime = new Date(inputTime);
+  const currentTime = new Date();
+
+  return givenTime.getTime() > currentTime.getTime();
+}

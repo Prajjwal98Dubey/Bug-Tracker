@@ -5,6 +5,8 @@ import userData from "../data/users.data.json";
 import { useDispatch } from "react-redux";
 import { addNewTask } from "../redux/slices/tasks.slice.js";
 import { nanoid } from "nanoid";
+import toast from "react-hot-toast";
+import { isFutureTime } from "../helpers/formatDate.js";
 const Task = ({ tasks, setTasks, setShowTaskModal }) => {
   const [taskData, setTaskData] = useState({
     title: "",
@@ -20,8 +22,17 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
   };
   const handleSubmitTask = (e) => {
     e.preventDefault();
+    for (let key of Object.keys(taskData)) {
+      if (!taskData[key]) {
+        return toast.error("enter all mandatory fields");
+      }
+    }
+    if (taskData["assign"] == "none" || taskData["type"] == "none")
+      return toast.error("enter all mandatory fields");
 
-    // write task form data validation
+    if (!isFutureTime(taskData["endDate"]))
+      return toast.error("end date should be greater than today's date");
+
     let data = { ...taskData, id: nanoid(), isOpen: true, status: "pending" };
     dispatch(addNewTask(data));
     if (

@@ -31,6 +31,7 @@ const Login = () => {
         userImage: user.avatar,
         userRole: user.role,
         userId: user.userId,
+        manager: user.manager,
       })
     );
     navigate("/dashboard");

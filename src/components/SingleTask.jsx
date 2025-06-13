@@ -8,6 +8,8 @@ import {
 } from "../helpers/tickets.style";
 import { Pencil, Trash2 } from "lucide-react";
 import EditTask from "./EditTask";
+import toast from "react-hot-toast";
+import userData from "../data/users.data.json";
 
 const SingleTask = ({ tasks, setTasks, details }) => {
   const [taskStatus, setTaskStatus] = useState(details.status);
@@ -100,6 +102,11 @@ const SingleTask = ({ tasks, setTasks, details }) => {
         "all-tasks",
         JSON.stringify([...localStorageAllTasksUpdate])
       );
+      let managerName = userData.filter(
+        (user) =>
+          user.userId === JSON.parse(localStorage.getItem("tira-auth")).manager
+      )[0].userName;
+      toast.success(`sent for review to ${managerName}`);
     }
     setTaskStatus(e.target.value);
   };
