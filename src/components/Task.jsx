@@ -60,7 +60,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
   };
   return (
     <div className="fixed w-full h-full top-0 left-0 bg-gray-400/45 z-10">
-      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-[600px] max-h-[500px] overflow-y-auto px-2 py-2 border border-gray-400-400 rounded-md shadow-sm shadow-gray-500 bg-[#313131]">
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 lg:w-[600px] lg:max-h-[500px] w-[350px] h-[500px] overflow-y-auto px-2 py-2 border border-gray-400-400 rounded-md shadow-sm shadow-gray-500 bg-[#313131]">
         <div
           onClick={() => setShowTaskModal(false)}
           className="absolute right-2 top-2 w-fit h-fit rounded-full px-1 py-1 bg-gray-500 hover:bg-gray-400 cursor-pointer"
@@ -83,13 +83,13 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
         <div>
           <form onSubmit={handleSubmitTask}>
             <div className="py-1">
-              <div className="text-2xl font-bold flex justify-center items-center py-2 my-2">
+              <div className="lg:text-2xl text-lg font-bold flex justify-center items-center py-2 my-2">
                 <p className="text-center">Create a new task or bug</p>
               </div>
               <div>
                 <label htmlFor="title">
                   <div className="flex my-2">
-                    <div className="text-[14px] w-[100px] flex justify-center items-center font-medium">
+                    <div className="lg:text-[14px] lg:w-[100px] text-[11px] w-[70px] flex justify-center items-center font-medium">
                       Title
                     </div>
                     <div>
@@ -99,7 +99,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                         value={taskData["title"]}
                         onChange={handleTaskData}
                         placeholder="enter title  of task"
-                        className="w-[400px] h-[40px] py-2 px-1 rounded-md bg-[#313131] border border-gray-300"
+                        className="lg:w-[400px] lg:h-[40px] w-[250px] h-[35px] py-2 px-1 rounded-md bg-[#313131] border border-gray-300"
                       />
                     </div>
                   </div>
@@ -109,7 +109,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
             <div>
               <label htmlFor="description">
                 <div className="flex my-2">
-                  <div className="text-[14px] w-[100px] flex justify-center items-center font-medium">
+                  <div className="lg:text-[14px] lg:w-[100px] text-[11px] w-[70px] flex justify-center items-center font-medium">
                     Description
                   </div>
                   <div>
@@ -118,7 +118,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                       name="description"
                       onChange={handleTaskData}
                       placeholder="enter description  of task"
-                      className="w-[400px] h-[100px]  p-2 resize-none rounded-md bg-[#313131] border border-gray-300"
+                      className="lg:w-[400px] lg:h-[100px] w-[250px] h-[70px]  p-2 resize-none rounded-md bg-[#313131] border border-gray-300"
                     ></textarea>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
             <div className="my-2">
               <label htmlFor="priority">
                 <div className="flex">
-                  <div className="text-[14px] w-[100px] flex justify-center items-center font-medium">
+                  <div className="lg:text-[14px] lg:w-[100px] text-[11px] w-[70px] flex justify-center items-center font-medium">
                     Priority
                   </div>
                   <div className="flex px-2 justify-start">
@@ -139,7 +139,9 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                           value={p}
                           onChange={handleTaskData}
                         />
-                        <div className="px-1">{p}</div>
+                        <div className="px-1 lg:text-[16px] text-[11px]">
+                          {p}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -149,7 +151,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
             <div className="my-2">
               <label htmlFor="assignee">
                 <div className="flex px-2">
-                  <div className="text-[14px] w-[100px] flex justify-center items-center font-medium">
+                  <div className="lg:text-[14px] lg:w-[100px] text-[11px] w-[70px] flex justify-center items-center font-medium">
                     Assign to
                   </div>
                   <div className="flex justify-center items-center">
@@ -157,7 +159,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                       value={taskData["assign"]}
                       name="assign"
                       onChange={handleTaskData}
-                      className="bg-[#313131] border border-gray-400 px-2 py-1 rounded-md"
+                      className="bg-[#313131] border border-gray-400 px-2 py-1 rounded-md lg:text-[16px] text-[11px]"
                     >
                       <option disabled value="none">
                         select a option
@@ -175,7 +177,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
             <div className="my-2">
               <label htmlFor="type">
                 <div className="flex px-2">
-                  <div className="text-[14px] w-[100px] flex justify-center items-center font-medium">
+                  <div className="lg:text-[14px] lg:w-[100px] text-[11px] w-[70px] flex justify-center items-center font-medium">
                     type
                   </div>
                   <div className="flex justify-center items-center">
@@ -183,7 +185,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                       value={taskData["type"]}
                       name="type"
                       onChange={handleTaskData}
-                      className="bg-[#313131] border border-gray-400 px-2 py-1 rounded-md "
+                      className="bg-[#313131] border border-gray-400 px-2 py-1 rounded-md lg:text-[16px] text-[11px]"
                     >
                       <option disabled value="none">
                         select a option
@@ -195,10 +197,10 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                 </div>
               </label>
             </div>
-            <div className="">
+            <div className="py-1">
               <label htmlFor="date">
                 <div className="flex">
-                  <div className="text-[14px] w-[100px] flex justify-center items-center font-medium">
+                  <div className="lg:text-[14px] lg:w-[100px] text-[11px] w-[70px] flex justify-center items-center font-medium">
                     end date
                   </div>
                   <input
@@ -206,7 +208,7 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
                     name="endDate"
                     value={taskData["endDate"]}
                     onChange={handleTaskData}
-                    className="bg-[#313131] px-1 py-2 rounded-md"
+                    className="bg-[#313131] px-1 py-2 rounded-md lg:text-[17px] text-[11px] border border-gray-400"
                   />
                 </div>
               </label>

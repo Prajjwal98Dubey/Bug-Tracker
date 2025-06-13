@@ -38,7 +38,7 @@ const FilterComp = ({ tasks, setTasks, userRole }) => {
   };
   return (
     <div className=" w-full h-full">
-      <div className="flex justify-end items-center px-4">
+      <div className="flex lg:justify-end justify-center items-center px-4 my-1">
         <Funnel size="14" />
         <div className="flex justify-center items-center px-1">Filters</div>
         <div className="mx-[2px]">

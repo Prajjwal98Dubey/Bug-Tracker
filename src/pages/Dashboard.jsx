@@ -35,9 +35,9 @@ const Dashboard = () => {
     <>
       <div className="w-full h-full">
         <Navbar />
-        <div className="flex justify-start items-center py-2 px-10">
+        <div className="flex justify-start items-center py-2 lg:px-10 px-4">
           <button
-            className="w-fit h-fit py-2 px-8 rounded-md bg-blue-500 hover:bg-blue-400 cursor-pointer text-xl font-bold flex justify-center items-center"
+            className="w-fit h-fit lg:py-2 lg:px-8 px-4 py-1 rounded-md bg-blue-500 hover:bg-blue-400 cursor-pointer text-xl font-bold flex justify-center items-center"
             onClick={() => setShowTaskModal(true)}
           >
             + Create
@@ -54,7 +54,7 @@ const Dashboard = () => {
               setTasks={setTasks}
               userRole="developer"
             />
-            <div className="px-8 py-2">
+            <div className="lg:px-8 px-4 py-2">
               <DisplayTask
                 tasks={tasks}
                 setTasks={setTasks}

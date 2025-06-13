@@ -116,7 +116,7 @@ const SingleTask = ({ tasks, setTasks, details }) => {
   return (
     <>
       <div
-        className={`w-[400px] h-[250px] relative ${
+        className={`lg:w-[400px] lg:h-[250px] w-[340px] h-[200px] relative ${
           TASK_STATUS_STYLE[details.status].border
         } rounded-md mx-2 my-2`}
       >

@@ -38,16 +38,16 @@ const Login = () => {
   return (
     <div>
       <div className="flex justify-center items-center py-2 w-full h-full">
-        <p className="w-fit px-2 text-center py-2 text-2xl font-bold">
+        <p className="w-fit text-center py-2 text-2xl font-bold">
           Welcome to Tira Tracker
         </p>
       </div>
-      <div className="flex justify-center items-center py-2">
+      <div className="flex justify-center items-center py-2 w-full">
         <form onSubmit={handeLoginUser}>
           <div className="m-2">
             <label htmlFor="username">
-              <div className="flex">
-                <div className="flex justify-center items-center w-[150px] h-[45px] px-1 ">
+              <div className="">
+                <div className="flex justify-start items-center lg:w-[150px] lg:h-[45px] w-[70px] h-[35px] px-1 ">
                   username
                 </div>
                 <input
@@ -62,8 +62,8 @@ const Login = () => {
           </div>
           <div className="m-2">
             <label htmlFor="password">
-              <div className="flex justify-center items-center">
-                <div className=" w-[150px] h-[45px] px-1 flex justify-center items-center">
+              <div className="">
+                <div className="lg:w-[150px] lg:h-[45px] w-[70px] h-[35px] px-1 flex justify-start items-center">
                   password
                 </div>
                 <input
