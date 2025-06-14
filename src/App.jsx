@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loader from "./components/Loader";
 import { Toaster } from "react-hot-toast";
@@ -20,6 +24,14 @@ export default App;
 const appRouter = createBrowserRouter([
   {
     path: "/",
+    element: localStorage.getItem("tira-auth") ? (
+      <Navigate to="/dashboard" />
+    ) : (
+      <Navigate to="/login" />
+    ),
+  },
+  {
+    path: "/login",
     element: (
       <Suspense fallback={<Loader />}>
         <Login />

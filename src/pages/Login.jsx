@@ -15,7 +15,7 @@ const Login = () => {
       });
     let user = {};
     for (let u of userData) {
-      if (u.userName.toLowerCase() == userName.toLowerCase()) {
+      if (u.userName.toLowerCase().trim() == userName.toLowerCase().trim()) {
         user = { ...u };
         break;
       }

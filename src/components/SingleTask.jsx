@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { convertDate } from "../helpers/formatDate";
+import { useState } from "react";
+import { convertDate, getTimeDifferenceString } from "../helpers/formatDate";
 import {
   TASK_PRIORITY_STYLE,
   TASK_STATUS_STYLE,
@@ -53,6 +53,7 @@ const SingleTask = ({ tasks, setTasks, details }) => {
           updatedTasks.push({
             ...task,
             status: "pending",
+            timeSpend: "",
           });
         } else {
           updatedTasks.push(task);
@@ -65,6 +66,7 @@ const SingleTask = ({ tasks, setTasks, details }) => {
           localStorageAllTasksUpdate.push({
             ...task,
             status: "pending",
+            timeSpend: "",
           });
         } else {
           localStorageAllTasksUpdate.push({ ...task });
@@ -81,6 +83,7 @@ const SingleTask = ({ tasks, setTasks, details }) => {
           updatedTasks.push({
             ...task,
             status: "approval",
+            timeSpend: getTimeDifferenceString(details.createdAt),
           });
         } else {
           updatedTasks.push(task);
@@ -93,6 +96,7 @@ const SingleTask = ({ tasks, setTasks, details }) => {
           localStorageAllTasksUpdate.push({
             ...task,
             status: "approval",
+            timeSpend: getTimeDifferenceString(details.createdAt),
           });
         } else {
           localStorageAllTasksUpdate.push({ ...task });
@@ -191,6 +195,18 @@ const SingleTask = ({ tasks, setTasks, details }) => {
             </div>
           </div>
         </div>
+        {details["status"] != "pending" && (
+          <div className="flex justify-start items-center px-2 mt-1">
+            <div className="flex justify-center items-center ">
+              <div className="text-gray-300 text-[13px] font-medium flex justify-center items-center ">
+                time spend on this {details.type}
+              </div>
+              <div className="flex justify-center items-center ml-1 text-[12px] font-bold">
+                {details["timeSpend"]}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       {showEditModal && (
         <EditTask

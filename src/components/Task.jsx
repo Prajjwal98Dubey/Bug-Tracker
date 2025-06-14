@@ -1,4 +1,4 @@
-/// create a task or bug
+// create a task or bug
 
 import { useState } from "react";
 import userData from "../data/users.data.json";
@@ -33,7 +33,14 @@ const Task = ({ tasks, setTasks, setShowTaskModal }) => {
     if (!isFutureTime(taskData["endDate"]))
       return toast.error("end date should be greater than today's date");
 
-    let data = { ...taskData, id: nanoid(), isOpen: true, status: "pending" };
+    let data = {
+      ...taskData,
+      id: nanoid(),
+      isOpen: true,
+      status: "pending",
+      createdAt: Date.now(),
+      timeSpend: "",
+    };
     dispatch(addNewTask(data));
     if (
       taskData.assign === JSON.parse(localStorage.getItem("tira-auth")).userId

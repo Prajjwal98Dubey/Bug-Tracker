@@ -33,6 +33,6 @@ export const TASK_PRIORITY_STYLE = {
 };
 
 export const TASK_TYPE_STATUS_OPTIONS = {
-  task: ["completed", "pending", "approval"],
-  bug: ["closed", "pending", "approval"],
+  task: ["pending", "approval"],
+  bug: ["pending", "approval"],
 };

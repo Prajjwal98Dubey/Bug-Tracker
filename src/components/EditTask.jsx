@@ -9,7 +9,8 @@ const EditTask = ({ taskData, setShowEditModal, tasks, setTasks }) => {
   };
   const handleEditTask = (e) => {
     e.preventDefault();
-    for (let key of Object.keys(taskData)) {
+    for (let key of Object.keys(editDetails)) {
+      if (key === "createdAt" || key === "timeSpend") continue;
       if (!editDetails[key]) {
         return toast.error("enter all mandatory fields");
       }

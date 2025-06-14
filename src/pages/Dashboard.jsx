@@ -4,15 +4,20 @@ import DisplayTask from "../components/DisplayTask";
 import Navbar from "../components/Navbar";
 import ManagerDashboard from "../components/ManagerDashboard";
 import FilterComp from "../components/FilterComp";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     const getMyTasks = () => {
       let currDeveloperTasks = [];
-      if (localStorage.getItem("all-tasks")) {
+      if (
+        localStorage.getItem("tira-auth") &&
+        localStorage.getItem("all-tasks")
+      ) {
         let allTasks = JSON.parse(localStorage.getItem("all-tasks")).filter(
           (task) =>
             task.assign === JSON.parse(localStorage.getItem("tira-auth")).userId
@@ -26,11 +31,13 @@ const Dashboard = () => {
   }, []);
 
   if (
+    localStorage.getItem("tira-auth") &&
     JSON.parse(localStorage.getItem("tira-auth")).userRole.toLowerCase() ==
-    "manager"
+      "manager"
   )
     return <ManagerDashboard />;
 
+  if (!localStorage.getItem("tira-auth")) navigate("/");
   return (
     <>
       <div className="w-full h-full">

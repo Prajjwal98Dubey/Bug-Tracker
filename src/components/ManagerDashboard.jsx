@@ -61,6 +61,7 @@ const ManagerDashboard = () => {
         updateTasks.push({
           ...task,
           status: "pending",
+          timeSpend: "",
         });
       } else {
         updateTasks.push({ ...task });
@@ -68,7 +69,7 @@ const ManagerDashboard = () => {
     });
     JSON.parse(localStorage.getItem("all-tasks")).forEach((task) => {
       if (task.id === taskId) {
-        updatedAllTasks.push({ ...task, status: "pending" });
+        updatedAllTasks.push({ ...task, status: "pending", timeSpend: "" });
       } else {
         updatedAllTasks.push({ ...task });
       }
@@ -84,6 +85,7 @@ const ManagerDashboard = () => {
         updateTasks.push({
           ...task,
           status: "pending",
+          timeSpend: "",
         });
       } else {
         updateTasks.push({ ...task });
@@ -94,6 +96,7 @@ const ManagerDashboard = () => {
         updatedAllTasks.push({
           ...task,
           status: "pending",
+          timeSpend: "",
         });
       } else {
         updatedAllTasks.push({ ...task });
@@ -203,6 +206,16 @@ const ManagerDashboard = () => {
                     >
                       Yes
                     </button>
+                  </div>
+                </div>
+              )}
+              {task["status"] != "pending" && (
+                <div className="flex justify-start items-center px-2 mt-1 mb-1">
+                  <div className="text-[13px] text-gray-300 font-medium">
+                    time spend:
+                  </div>
+                  <div className="text-[11px] font-bold px-1">
+                    {task["timeSpend"]}
                   </div>
                 </div>
               )}
