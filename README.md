@@ -28,6 +28,74 @@ A bug tracking system (only frontend)
 
 - **Frontend**: HTML, CSS, JS, React.js, TailwindCSS
 
+## Testing Credential
+
+``` bash
+[
+  {
+    "userId": "dev-001",
+    "userName": "developer1",
+    "password": "pass123",
+    "role": "developer",
+    "avatar": "https://i.pravatar.cc/150?img=1",
+    "team": ["dev-002", "dev-003"],
+    "manager": "mgr-001"
+  },
+  {
+    "userId": "dev-002",
+    "userName": "developer2",
+    "password": "pass123",
+    "role": "developer",
+    "avatar": "https://i.pravatar.cc/150?img=2",
+    "team": ["dev-001", "dev-003"],
+    "manager": "mgr-001"
+  },
+  {
+    "userId": "dev-003",
+    "userName": "developer3",
+    "password": "pass123",
+    "role": "developer",
+    "avatar": "https://i.pravatar.cc/150?img=3",
+    "team": ["dev-002", "dev-001"],
+    "manager": "mgr-001"
+  },
+  {
+    "userId": "dev-004",
+    "userName": "developer4",
+    "password": "pass123",
+    "role": "developer",
+    "avatar": "https://i.pravatar.cc/150?img=2",
+    "team": ["dev-005"],
+    "manager": "mgr-002"
+  },
+  {
+    "userId": "dev-005",
+    "userName": "developer5",
+    "password": "pass123",
+    "role": "developer",
+    "avatar": "https://i.pravatar.cc/150?img=2",
+    "team": ["dev-004"],
+    "manager": "mgr-002"
+  },
+  {
+    "userId": "mgr-001",
+    "userName": "manager1",
+    "password": "pass123",
+    "role": "manager",
+    "avatar": "https://i.pravatar.cc/150?img=4",
+    "team": ["dev-002", "dev-001", "dev-003"]
+  },
+  {
+    "userId": "mgr-002",
+    "userName": "manager2",
+    "password": "pass123",
+    "role": "manager",
+    "avatar": "https://i.pravatar.cc/150?img=5",
+    "team": ["dev-004", "dev-005"]
+  }
+]
+```
+
 ## 📦 Installation
 
 Clone the repository:
@@ -35,3 +103,4 @@ Clone the repository:
 ```bash
 git clone https://github.com/Prajjwal98Dubey/Bug-Tracker.git
 cd Bug-Tracker
+
